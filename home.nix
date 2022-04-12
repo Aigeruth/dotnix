@@ -1,24 +1,14 @@
-{ home-manager, pkgs, pkgs-unstable, username, ... }:
+{ pkgs, username, imports, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "aige";
-  home.homeDirectory = "/Users/aige";
   home.packages = [
-    pkgs.bat
-    pkgs.bazelisk
-    pkgs.fish
-    pkgs.jq
-    pkgs.nixfmt
     pkgs.restic
-    pkgs.ripgrep
-    pkgs.vgrep
-    pkgs.wget
 
     # unfree packages
-    pkgs-unstable._1password
+    pkgs.unstable._1password
   ];
+
+  inherit imports;
 
   # Let Home Manager install and manage itself.
   programs = {

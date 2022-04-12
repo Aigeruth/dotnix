@@ -14,39 +14,44 @@
 
   outputs = { home-manager, nixpkgs, nixpkgs-unstable, ... }:
     let
-      system = "aarch64-darwin";
-      username = "aige";
-
-      pkgs = import nixpkgs {
-        inherit system;
-      };
-      pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
-        config = {
-          allowUnfree = true;
+      overlay-unstable = final: prev: {
+        unstable = import nixpkgs-unstable {
+	  system = prev.system;
+          config = {
+            allowUnfree = true;
+          };
         };
+      };
+      pkgs-aarch64-darwin = import nixpkgs {
+        system = "aarch64-darwin";
+	overlays = [
+          overlay-unstable
+        ];
+      };
+      pkgs-x86_64-darwin = import nixpkgs {
+        system = "x86_64-darwin";
+	overlays = [
+          overlay-unstable
+        ];
       };
     in {
-      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        # Specify the path to your home configuration here
-        configuration = import ./home.nix {
-	  inherit home-manager pkgs pkgs-unstable username;
+      homeConfigurations = {
+        mila = home-manager.lib.homeManagerConfiguration rec {
+          stateVersion = "21.11";
+          system = "aarch64-darwin";
+          pkgs = pkgs-aarch64-darwin;
+          username = "aige";
+          homeDirectory = "/Users/${username}";
+
+          # Specify the path to your home configuration here
+          configuration = import ./home.nix {
+	    imports = [
+              ./modules/development.nix
+              ./modules/terminal.nix
+            ];
+            inherit pkgs system username;
+          };
         };
-        inherit system username;
-        homeDirectory = "/Users/${username}";
-
-        # This value determines the Home Manager release that your
-        # configuration is compatible with. This helps avoid breakage
-        # when a new Home Manager release introduces backwards
-        # incompatible changes.
-        #
-        # You can update Home Manager without changing this value. See
-        # the Home Manager release notes for a list of state version
-        # changes in each release.
-        stateVersion = "21.11";
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
       };
     };
 }

@@ -10,9 +10,29 @@ experimental-features = nix-command flakes
 
 ## Adding this flake to the Nix Store
 
+This flake contains configuration for multiple machines. They can be added to the Nix Store one by one.
+
+Adding a configuration for `mila` to the Nix Store:
+
 ```sh
-nix build --no-link github:Aigeruth/dotnix#homeConfigurations.aige.activationPackage
-"$(nix path-info ~/dotfiles#homeConfigurations.aige.activationPackage)"/activate
+nix build --no-link github:Aigeruth/dotnix#homeConfigurations.mila.activationPackage
 ```
 
 ## Activating
+
+Pick the appropriate machine name. E.g. `mila`:
+
+```
+"$(nix path-info ~/dotfiles#homeConfigurations.mila.activationPackage)"/activate
+```
+
+## Updating the home environment
+
+If the configuration is updated locally, it can be reloaded with the following command.
+
+```
+home-manager switch --flake ~/dotnix#mila
+```
+
+_Note_: new files need to be added to git first (e.g. `git add`).
+
