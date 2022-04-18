@@ -22,24 +22,19 @@
           };
         };
       };
-      pkgs-aarch64-darwin = import nixpkgs {
-        system = "aarch64-darwin";
-	overlays = [
-          overlay-unstable
-        ];
-      };
-      pkgs-x86_64-darwin = import nixpkgs {
-        system = "x86_64-darwin";
-	overlays = [
-          overlay-unstable
-        ];
-      };
+      packages = system:
+        import nixpkgs {
+          inherit system;
+          overlays = [
+            overlay-unstable
+          ];
+        };
     in {
       homeConfigurations = {
         mila = home-manager.lib.homeManagerConfiguration rec {
           stateVersion = "21.11";
           system = "aarch64-darwin";
-          pkgs = pkgs-aarch64-darwin;
+          pkgs = packages system;
           username = "aige";
           homeDirectory = "/Users/${username}";
 
@@ -48,6 +43,7 @@
 	    imports = [
               ./modules/development.nix
               ./modules/terminal.nix
+              ./modules/programs/fish.nix
             ];
             inherit pkgs system username;
           };
