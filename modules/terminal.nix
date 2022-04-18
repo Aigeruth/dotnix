@@ -4,7 +4,7 @@
   home.packages = [
     pkgs.bat
     pkgs.exa
-    pkgs.fish
+    pkgs.fd
     pkgs.ripgrep
     pkgs.vgrep
     pkgs.wget
