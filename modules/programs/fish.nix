@@ -1,18 +1,14 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
-    pkgs.fish
-  ];
+  home.packages = [ pkgs.fish ];
 
   programs = {
     fish = {
       enable = true;
 
       functions = {
-        prompt_hostname = {
-          body = "scutil --get LocalHostName";
-        };
+        prompt_hostname = { body = "scutil --get LocalHostName"; };
       };
 
       loginShellInit = ''
@@ -26,9 +22,7 @@
         set -U fish_greeting
       '';
 
-      shellAliases = {
-        ia = ''open -a "/Applications/iA Writer.app" '';
-      };
+      shellAliases = { ia = ''open -a "/Applications/iA Writer.app" ''; };
 
       plugins = [{
         name = "foreign-env";
