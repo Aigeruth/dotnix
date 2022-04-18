@@ -16,18 +16,14 @@
     let
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
-	  system = prev.system;
-          config = {
-            allowUnfree = true;
-          };
+          system = prev.system;
+          config = { allowUnfree = true; };
         };
       };
       packages = system:
         import nixpkgs {
           inherit system;
-          overlays = [
-            overlay-unstable
-          ];
+          overlays = [ overlay-unstable ];
         };
     in {
       homeConfigurations = {
@@ -40,7 +36,7 @@
 
           # Specify the path to your home configuration here
           configuration = import ./home.nix {
-	    imports = [
+            imports = [
               ./modules/development.nix
               ./modules/terminal.nix
               ./modules/programs/fish.nix
