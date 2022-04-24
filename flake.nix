@@ -40,6 +40,7 @@
               ./modules/development.nix
               ./modules/terminal.nix
               ./modules/programs/fish.nix
+              ./modules/programs/neovim.nix
             ];
             inherit pkgs system username;
           };
