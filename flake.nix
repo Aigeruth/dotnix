@@ -38,7 +38,9 @@
           configuration = import ./home.nix {
             imports = [
               ./modules/development.nix
+              ./modules/finance.nix
               ./modules/terminal.nix
+              ./modules/programs/emacs.nix
               ./modules/programs/fish.nix
               ./modules/programs/neovim.nix
             ];
