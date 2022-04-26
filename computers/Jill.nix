@@ -6,7 +6,6 @@
     home = "/Users/nagyg";
   };
   home-manager = {
-    # users.nagyg = import ./home.nix;
     users.nagyg = {
       imports = [
         ../modules/development.nix
