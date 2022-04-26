@@ -45,6 +45,5 @@
         "require-cross-certification" = true;
       };
     };
-    kitty = { enable = true; };
   };
 }
