@@ -29,7 +29,7 @@
           inherit system;
           overlays = [ overlay-unstable ];
         };
-      stateVersion = 21.11;
+      stateVersion = "21.11";
     in {
       homeConfigurations = {
         mila = home-manager.lib.homeManagerConfiguration rec {
