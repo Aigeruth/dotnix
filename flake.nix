@@ -7,12 +7,16 @@
       url = "github:nix-community/home-manager/release-21.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    darwin = {
+      url = "github:lnl7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = { home-manager, nixpkgs, nixpkgs-unstable, ... }:
+  outputs = { home-manager, darwin, nixpkgs, nixpkgs-unstable, ... }:
     let
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
@@ -25,10 +29,11 @@
           inherit system;
           overlays = [ overlay-unstable ];
         };
+      stateVersion = 21.11;
     in {
       homeConfigurations = {
         mila = home-manager.lib.homeManagerConfiguration rec {
-          stateVersion = "21.11";
+          inherit stateVersion;
           system = "aarch64-darwin";
           pkgs = packages system;
           username = "aige";
@@ -45,6 +50,31 @@
               ./modules/programs/neovim.nix
             ];
             inherit pkgs system username;
+          };
+        };
+      };
+
+      darwinConfigurations = {
+        Jill = darwin.lib.darwinSystem rec {
+          system = "x86_64-darwin";
+          modules = [
+            home-manager.darwinModules.home-manager
+            ./computers/Jill.nix
+            ./modules/darwin/system.nix
+            ./modules/darwin/brew.nix
+            ./modules/darwin/brew/browsers.nix
+            ./modules/darwin/brew/development.nix
+            ./modules/darwin/brew/note-taking/personal.nix
+            ./modules/darwin/brew/photography.nix
+            ./modules/darwin/brew/productivity.nix
+            ./modules/darwin/brew/social.nix
+            ./modules/darwin/brew/terminal.nix
+            ./modules/darwin/brew/utils.nix
+          ];
+          # These are passed down to all nix-darwin modules
+          specialArgs = {
+            pkgs = packages system;
+            inherit stateVersion;
           };
         };
       };

@@ -1,4 +1,4 @@
-{ pkgs, username, imports, ... }:
+{ pkgs, imports, ... }:
 
 {
   home.packages = [
@@ -11,5 +11,4 @@
   inherit imports;
 
   # Let Home Manager install and manage itself.
-  programs = { home-manager.enable = true; };
 }
