@@ -3,6 +3,8 @@
 {
   home.packages = [
     pkgs.unstable.bazelisk
+    pkgs.git
+    pkgs.lcov
     pkgs.unstable.gh
     pkgs.unstable.pre-commit
     pkgs.unstable.yamllint

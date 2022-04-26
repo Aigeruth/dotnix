@@ -20,10 +20,19 @@ nix build --no-link github:Aigeruth/dotnix#homeConfigurations.mila.activationPac
 
 ## Activating
 
+### Home Manager
+
 Pick the appropriate machine name. E.g. `mila`:
 
 ```
-"$(nix path-info ~/dotfiles#homeConfigurations.mila.activationPackage)"/activate
+"$(nix path-info ~/dotnix#homeConfigurations.mila.activationPackage)"/activate
+```
+
+### nix-darwin
+
+```sh
+nix build ~/dotnix\#darwinConfigurations.Jill.system
+./result/sw/bin/darwin-rebuild switch --flake ~/dotnix
 ```
 
 ## Updating the home environment
@@ -35,4 +44,3 @@ home-manager switch --flake ~/dotnix#mila
 ```
 
 _Note_: new files need to be added to git first (e.g. `git add`).
-
