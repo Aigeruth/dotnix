@@ -57,6 +57,7 @@
       darwinConfigurations = {
         Jill = darwin.lib.darwinSystem rec {
           system = "x86_64-darwin";
+          pkgs = packages system;
           modules = [
             home-manager.darwinModules.home-manager
             ./computers/Jill.nix
@@ -72,10 +73,7 @@
             ./modules/darwin/brew/utils.nix
           ];
           # These are passed down to all nix-darwin modules
-          specialArgs = {
-            pkgs = packages system;
-            inherit stateVersion;
-          };
+          specialArgs = { inherit stateVersion; };
         };
       };
     };
