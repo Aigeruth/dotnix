@@ -35,6 +35,18 @@ nix build ~/dotnix\#darwinConfigurations.Jill.system
 ./result/sw/bin/darwin-rebuild switch --flake ~/dotnix
 ```
 
+Or without a link to `./result`
+
+```sh
+nix build --no-link ~/dotnix\#darwinConfigurations.Mila.system
+```
+
+Fish shell doesn't allow substitutions for commands, so it needs a workaround:
+
+```sh
+darwin_rebuild=(nix path-info ~/dotnix\#darwinConfigurations.Mila.system)/sw/bin/darwin-rebuild $darwin_rebuild switch --flake ~/dotnix\#Mila
+```
+
 ## Updating the home environment
 
 If the configuration is updated locally, it can be reloaded with the following command.

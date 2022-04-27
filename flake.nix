@@ -30,6 +30,14 @@
           overlays = [ overlay-unstable ];
         };
       stateVersion = "21.11";
+
+      mkDarwin = { system, modules }:
+        darwin.lib.darwinSystem {
+          inherit system modules;
+          pkgs = packages system;
+          # These are passed down to all nix-darwin modules
+          specialArgs = { inherit stateVersion; };
+        };
     in {
       homeConfigurations = {
         mila = home-manager.lib.homeManagerConfiguration rec {
@@ -40,16 +48,17 @@
           homeDirectory = "/Users/${username}";
 
           # Specify the path to your home configuration here
-          configuration = import ./home.nix {
+          configuration = {
             imports = [
               ./modules/development.nix
               ./modules/finance.nix
               ./modules/terminal.nix
+              ./modules/tools.nix
               ./modules/programs/emacs.nix
               ./modules/programs/fish.nix
+              ./modules/programs/home-manager.nix
               ./modules/programs/neovim.nix
             ];
-            inherit pkgs system username;
           };
         };
       };
@@ -74,6 +83,16 @@
           ];
           # These are passed down to all nix-darwin modules
           specialArgs = { inherit stateVersion; };
+        };
+
+        Mila = mkDarwin {
+          system = "aarch64-darwin";
+          modules = [
+            home-manager.darwinModules.home-manager
+            ./modules/darwin/system.nix
+            ./modules/darwin/brew.nix
+            ./modules/darwin/brew/utils.nix
+          ];
         };
       };
     };
