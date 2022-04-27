@@ -9,6 +9,7 @@
     plugins = with pkgs.unstable.vimPlugins; [
       ale
       dracula-vim
+      nerdcommenter
       (nvim-treesitter.withPlugins (plugins: [ plugins.tree-sitter-nix ]))
     ];
 
