@@ -21,6 +21,10 @@
 
     package = pkgs.unstable.neovim-unwrapped;
     extraConfig = ''
+      set expandtab
+      set shiftwidth=2
+      set softtabstop=2
+
       colorscheme dracula
 
       let g:ale_completion_enabled = 1
