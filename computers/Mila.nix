@@ -16,6 +16,7 @@
         ../modules/home-manager/programs/fish.nix
         ../modules/home-manager/programs/home-manager.nix
         ../modules/home-manager/programs/neovim.nix
+        ../modules/home-manager/programs/starship.nix
       ];
 
       home.stateVersion = stateVersion;

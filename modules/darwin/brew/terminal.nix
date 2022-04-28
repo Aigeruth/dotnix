@@ -3,6 +3,12 @@
 {
   homebrew = {
     taps = [ "homebrew/cask-fonts" ];
-    casks = [ "kitty" "font-powerline-symbols" ];
+    casks = [
+      "font-droid-sans-mono-nerd-font"
+      "font-hack-nerd-font"
+      "font-im-writing-nerd-font"
+      "font-powerline-symbols"
+      "kitty"
+    ];
   };
 }
