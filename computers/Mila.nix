@@ -8,14 +8,14 @@
   home-manager = {
     users.aige = {
       imports = [
-        ../modules/development.nix
-        ../modules/finance.nix
-        ../modules/terminal.nix
-        ../modules/tools.nix
-        ../modules/programs/fish.nix
-        ../modules/programs/home-manager.nix
-        ../modules/programs/neovim.nix
-        ../modules/programs/emacs.nix
+        ../modules/home-manager/development.nix
+        ../modules/home-manager/finance.nix
+        ../modules/home-manager/terminal.nix
+        ../modules/home-manager/tools.nix
+        ../modules/home-manager/programs/emacs.nix
+        ../modules/home-manager/programs/fish.nix
+        ../modules/home-manager/programs/home-manager.nix
+        ../modules/home-manager/programs/neovim.nix
       ];
 
       home.stateVersion = stateVersion;
