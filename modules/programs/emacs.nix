@@ -17,7 +17,9 @@
       (setq-default show-trailing-whitespace t)
 
       (load-theme 'dracula t)
+
       (evil-mode)
+      (evil-set-undo-system 'undo-redo) ;; requires Emacs 28
 
       (ledger-mode)
       (setq ledger-default-date-format ledger-iso-date-format
