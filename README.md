@@ -1,5 +1,7 @@
 # dotnix
 
+_Note_: new files need to be added to git first (e.g. `git add`).
+
 ## Enable Nix Falkes
 
 Two experimental features can be enabled via `~/.config/nix/nix.conf`:
@@ -20,15 +22,7 @@ nix build --no-link github:Aigeruth/dotnix#homeConfigurations.mila.activationPac
 
 ## Activating
 
-### Home Manager
-
-Pick the appropriate machine name. E.g. `mila`:
-
-```
-"$(nix path-info ~/dotnix#homeConfigurations.mila.activationPackage)"/activate
-```
-
-### nix-darwin
+nix-darwin is installed via Nix Flakes:
 
 ```sh
 nix build ~/dotnix\#darwinConfigurations.Jill.system
@@ -46,13 +40,3 @@ Fish shell doesn't allow substitutions for commands, so it needs a workaround:
 ```sh
 darwin_rebuild=(nix path-info ~/dotnix\#darwinConfigurations.Mila.system)/sw/bin/darwin-rebuild $darwin_rebuild switch --flake ~/dotnix\#Mila
 ```
-
-## Updating the home environment
-
-If the configuration is updated locally, it can be reloaded with the following command.
-
-```
-home-manager switch --flake ~/dotnix#mila
-```
-
-_Note_: new files need to be added to git first (e.g. `git add`).
