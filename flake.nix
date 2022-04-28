@@ -44,30 +44,6 @@
           specialArgs = { inherit stateVersion; };
         };
     in {
-      homeConfigurations = {
-        mila = home-manager.lib.homeManagerConfiguration rec {
-          inherit stateVersion;
-          system = "aarch64-darwin";
-          pkgs = packages system;
-          username = "aige";
-          homeDirectory = "/Users/${username}";
-
-          # Specify the path to your home configuration here
-          configuration = {
-            imports = [
-              ./modules/development.nix
-              ./modules/finance.nix
-              ./modules/terminal.nix
-              ./modules/tools.nix
-              ./modules/programs/emacs.nix
-              ./modules/programs/fish.nix
-              ./modules/programs/home-manager.nix
-              ./modules/programs/neovim.nix
-            ];
-          };
-        };
-      };
-
       darwinConfigurations = {
         Jill = mkDarwin {
           system = "x86_64-darwin";
@@ -86,7 +62,18 @@
 
         Mila = mkDarwin {
           system = "aarch64-darwin";
-          modules = [ ./modules/darwin/brew/utils.nix ];
+          modules = [
+            ./computers/Mila.nix
+            ./modules/darwin/brew/browsers.nix
+            ./modules/darwin/brew/development.nix
+            ./modules/darwin/brew/note-taking/personal.nix
+            ./modules/darwin/brew/photography.nix
+            ./modules/darwin/brew/productivity.nix
+            ./modules/darwin/brew/social.nix
+            ./modules/darwin/brew/terminal.nix
+            ./modules/darwin/brew/utils.nix
+            ./modules/darwin/brew/videography.nix
+          ];
         };
       };
     };
