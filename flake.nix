@@ -33,7 +33,12 @@
 
       mkDarwin = { system, modules }:
         darwin.lib.darwinSystem {
-          inherit system modules;
+          inherit system;
+          modules = [
+            home-manager.darwinModules.home-manager
+            ./modules/darwin/system.nix
+            ./modules/darwin/brew.nix
+          ] ++ modules;
           pkgs = packages system;
           # These are passed down to all nix-darwin modules
           specialArgs = { inherit stateVersion; };
@@ -64,14 +69,10 @@
       };
 
       darwinConfigurations = {
-        Jill = darwin.lib.darwinSystem rec {
+        Jill = mkDarwin {
           system = "x86_64-darwin";
-          pkgs = packages system;
           modules = [
-            home-manager.darwinModules.home-manager
             ./computers/Jill.nix
-            ./modules/darwin/system.nix
-            ./modules/darwin/brew.nix
             ./modules/darwin/brew/browsers.nix
             ./modules/darwin/brew/development.nix
             ./modules/darwin/brew/note-taking/personal.nix
@@ -81,18 +82,11 @@
             ./modules/darwin/brew/terminal.nix
             ./modules/darwin/brew/utils.nix
           ];
-          # These are passed down to all nix-darwin modules
-          specialArgs = { inherit stateVersion; };
         };
 
         Mila = mkDarwin {
           system = "aarch64-darwin";
-          modules = [
-            home-manager.darwinModules.home-manager
-            ./modules/darwin/system.nix
-            ./modules/darwin/brew.nix
-            ./modules/darwin/brew/utils.nix
-          ];
+          modules = [ ./modules/darwin/brew/utils.nix ];
         };
       };
     };
