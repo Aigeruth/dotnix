@@ -33,6 +33,7 @@ Or without a link to `./result`
 
 ```sh
 nix build --no-link ~/dotnix\#darwinConfigurations.Mila.system
+$(nix path-info ~/dotnix\#darwinConfigurations.Mila.system)/sw/bin/darwin-rebuild switch --flake ~/dotnix\#Mila
 ```
 
 Fish shell doesn't allow substitutions for commands, so it needs a workaround:
@@ -40,3 +41,5 @@ Fish shell doesn't allow substitutions for commands, so it needs a workaround:
 ```sh
 darwin_rebuild=(nix path-info ~/dotnix\#darwinConfigurations.Mila.system)/sw/bin/darwin-rebuild $darwin_rebuild switch --flake ~/dotnix\#Mila
 ```
+
+After the first run, `darwin-rebuild` should be available in the `$PATH`.
