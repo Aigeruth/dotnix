@@ -10,9 +10,16 @@
       };
 
       loginShellInit = ''
-        if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-          fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-        end
+        fish_add_path --move --prepend --path \
+           $HOME/.nix-profile/bin \
+           /nix/var/nix/profiles/default/bin \
+           ${
+             if pkgs.stdenv.hostPlatform.isAarch64 then
+               "/opt/homebrew/bin"
+             else
+               "/usr/local/bin"
+           } \
+           /run/current-system/sw/bin # https://github.com/LnL7/nix-darwin/issues/122
       '';
 
       shellInit = ''
@@ -21,16 +28,6 @@
       '';
 
       shellAliases = { ia = ''open -a "/Applications/iA Writer.app" ''; };
-
-      plugins = [{
-        name = "foreign-env";
-        src = pkgs.fetchFromGitHub {
-          owner = "oh-my-fish";
-          repo = "plugin-foreign-env";
-          rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
-          sha256 = "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs";
-        };
-      }];
     };
   };
 }
