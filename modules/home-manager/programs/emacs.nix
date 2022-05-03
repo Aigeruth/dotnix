@@ -28,14 +28,13 @@
 
       (global-company-mode)
     '';
-    extraPackages = epkgs:
-      lib.attrVals [
+    extraPackages = lib.attrVals [
         "company"
         "dracula-theme"
         "evil"
         "evil-ledger"
         "ledger-mode"
-      ] epkgs;
+      ];
   };
 
   # disable welcome message as inhibit-startup-screen doesn't seem to work
