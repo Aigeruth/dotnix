@@ -1,0 +1,6 @@
+---
+- id: check-with-statix
+  name: Run statix
+  description: statix is a nix static analyzer
+  language: nix
+  entry: nix run nixpkgs#statix -- check
