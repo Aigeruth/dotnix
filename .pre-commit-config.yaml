@@ -14,3 +14,9 @@ repos:
         language: system
         entry: nix run nixpkgs#statix -- check
         pass_filenames: false
+      - id: check-with-nixfmt
+        name: Run nixfmt
+        description: Verify files are formatted with nixfmt
+        language: system
+        entry: nix run nixpkgs#nixfmt -- --check
+        types: [nix]
