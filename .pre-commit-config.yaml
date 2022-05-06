@@ -6,3 +6,11 @@ repos:
       - id: check-yaml
       - id: end-of-file-fixer
       - id: trailing-whitespace
+  - repo: local
+    hooks:
+      - id: check-with-statix
+        name: Run statix
+        description: statix is a nix static analyzer
+        language: system
+        entry: nix run nixpkgs#statix -- check
+        pass_filenames: false
