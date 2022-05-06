@@ -1,8 +1,0 @@
----
-- id: check-with-statix
-  name: Run statix
-  description: statix is a nix static analyzer
-  language: system
-  entry: nix run nixpkgs#statix
-  args: ['--', 'check']
-  pass_filenames: false
