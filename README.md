@@ -39,5 +39,3 @@ for fish shell should now contain the `darwin-rebuild` command
 ```sh
 darwin-rebuild switch --flake ~/dotnix\#Mila
 ```
-
-After the first run, `darwin-rebuild` should be available in the `$PATH`.
