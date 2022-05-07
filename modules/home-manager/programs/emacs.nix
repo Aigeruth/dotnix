@@ -29,12 +29,12 @@
       (global-company-mode)
     '';
     extraPackages = lib.attrVals [
-        "company"
-        "dracula-theme"
-        "evil"
-        "evil-ledger"
-        "ledger-mode"
-      ];
+      "company"
+      "dracula-theme"
+      "evil"
+      "evil-ledger"
+      "ledger-mode"
+    ];
   };
 
   # disable welcome message as inhibit-startup-screen doesn't seem to work
