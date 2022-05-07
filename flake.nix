@@ -2,21 +2,21 @@
   description = "Home Manager configuration";
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs
-    home-manager = {
-      url = "github:nix-community/home-manager/release-21.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    flake-utils.url = "github:numtide/flake-utils";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-21.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = { home-manager, darwin, nixpkgs, nixpkgs-unstable, ... }:
+  outputs =
+    { home-manager, darwin, flake-utils, nixpkgs, nixpkgs-unstable, ... }:
     let
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
@@ -76,5 +76,25 @@
           ];
         };
       };
-    };
+    } // flake-utils.lib.eachDefaultSystem (system:
+      let pkgs = packages system;
+      in {
+        checks = {
+          nixfmt = pkgs.runCommand "check-with-nixfmt" {
+            buildinputs = [ pkgs.findutils pkgs.unstable.nixfmt ];
+          } ''
+            touch $out
+            ${pkgs.findutils}/bin/find ${
+              ./.
+            } -name '*.nix' -type f -print0 | xargs -0 ${pkgs.unstable.nixfmt}/bin/nixfmt --check
+          '';
+
+          statix = pkgs.runCommand "check-with-statix" {
+            buildinputs = [ pkgs.unstable.statix ];
+          } ''
+            touch $out
+            ${pkgs.unstable.statix}/bin/statix check ${./.}
+          '';
+        };
+      });
 }
