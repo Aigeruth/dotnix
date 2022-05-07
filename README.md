@@ -10,36 +10,34 @@ Two experimental features can be enabled via `~/.config/nix/nix.conf`:
 experimental-features = nix-command flakes
 ```
 
-## Adding this flake to the Nix Store
+## Installation
 
-This flake contains configuration for multiple machines. They can be added to the Nix Store one by one.
-
-Adding a configuration for `mila` to the Nix Store:
-
-```sh
-nix build --no-link github:Aigeruth/dotnix#homeConfigurations.mila.activationPackage
-```
-
-## Activating
-
-nix-darwin is installed via Nix Flakes:
-
-```sh
-nix build ~/dotnix\#darwinConfigurations.Jill.system
-./result/sw/bin/darwin-rebuild switch --flake ~/dotnix
-```
-
-Or without a link to `./result`
+nix-darwin can be installed with `nix build` assuming that the
+repository is cloned into `$HOME/dotnix` directory:
 
 ```sh
 nix build --no-link ~/dotnix\#darwinConfigurations.Mila.system
+```
+
+Or directly from GitHub:
+
+```sh
+nix build --no-link github:Aigeruth/dotnix\#darwinConfigurations.Mila.system
+```
+
+At this state, `darwin-rebuild` is not available in the `$PATH` yet, so
+it needs to be run from the build path:
+
+```
 $(nix path-info ~/dotnix\#darwinConfigurations.Mila.system)/sw/bin/darwin-rebuild switch --flake ~/dotnix\#Mila
 ```
 
-Fish shell doesn't allow substitutions for commands, so it needs a workaround:
+After the first successful run and starting a new login shell, `$PATH`
+for fish shell should now contain the `darwin-rebuild` command
+(see `modules/home-manager/programs/fix.nix`):
 
 ```sh
-darwin_rebuild=(nix path-info ~/dotnix\#darwinConfigurations.Mila.system)/sw/bin/darwin-rebuild $darwin_rebuild switch --flake ~/dotnix\#Mila
+darwin_rebuild switch --flake ~/dotnix\#Mila
 ```
 
 After the first run, `darwin-rebuild` should be available in the `$PATH`.
