@@ -2,3 +2,5 @@
 \.*.swp
 
 result
+
+.direnv
