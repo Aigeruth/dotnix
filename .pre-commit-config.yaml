@@ -12,11 +12,11 @@ repos:
         name: Run statix
         description: statix is a nix static analyzer
         language: system
-        entry: nix run nixpkgs#statix -- check
+        entry: statix check
         pass_filenames: false
       - id: check-with-nixfmt
         name: Run nixfmt
         description: Verify files are formatted with nixfmt
         language: system
-        entry: nix run nixpkgs#nixfmt -- --check
+        entry: nixfmt --check
         types: [nix]
