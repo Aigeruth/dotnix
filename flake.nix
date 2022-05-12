@@ -96,7 +96,7 @@
             ${pkgs.unstable.statix}/bin/statix check ${./.}
           '';
         };
-        devShell = pkgs.mkShell {
+        devShells.default = pkgs.mkShell {
           buildInputs = [ pkgs.unstable.nixfmt pkgs.unstable.statix ];
         };
       });
