@@ -81,7 +81,7 @@
       in {
         checks = {
           nixfmt = pkgs.runCommand "check-with-nixfmt" {
-            buildinputs = [ pkgs.findutils pkgs.unstable.nixfmt ];
+            nativeBuildInputs = [ pkgs.findutils pkgs.unstable.nixfmt ];
           } ''
             touch $out
             ${pkgs.findutils}/bin/find ${
@@ -90,14 +90,14 @@
           '';
 
           statix = pkgs.runCommand "check-with-statix" {
-            buildinputs = [ pkgs.unstable.statix ];
+            nativeBuildInputs = [ pkgs.unstable.statix ];
           } ''
             touch $out
             ${pkgs.unstable.statix}/bin/statix check ${./.}
           '';
         };
         devShells.default = pkgs.mkShell {
-          buildInputs = [ pkgs.unstable.nixfmt pkgs.unstable.statix ];
+          nativeBuildInputs = [ pkgs.unstable.nixfmt pkgs.unstable.statix ];
         };
       });
 }
