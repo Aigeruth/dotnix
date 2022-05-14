@@ -76,6 +76,17 @@
             ./modules/darwin/brew/videography.nix
           ];
         };
+        work = mkDarwin {
+          system = "x86_64-darwin";
+          modules = [
+            ./computers/work.nix
+            ./modules/darwin/brew/browsers.nix
+            ./modules/darwin/brew/development.nix
+            ./modules/darwin/brew/note-taking/work.nix
+            ./modules/darwin/brew/terminal.nix
+            ./modules/darwin/brew/work.nix
+          ];
+        };
       };
       devShells = eachDefaultSystemMap (system:
         let pkgs = packages system;
