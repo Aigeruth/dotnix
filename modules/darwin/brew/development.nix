@@ -2,7 +2,7 @@ _:
 
 {
   homebrew = {
-    casks = [ "visual-studio-code" ];
+    casks = [ "meld" "visual-studio-code" ];
     masApps = { Xcode = 497799835; };
   };
 }
