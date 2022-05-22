@@ -18,6 +18,7 @@
   outputs =
     { home-manager, darwin, flake-utils, nixpkgs, nixpkgs-unstable, ... }:
     let
+      inherit (flake-utils.lib) eachDefaultSystemMap;
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           inherit (prev) system;
@@ -76,10 +77,17 @@
           ];
         };
       };
-    } // flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = packages system;
-      in {
-        checks = {
+      devShells = eachDefaultSystemMap (system:
+        let pkgs = packages system;
+        in {
+          default = pkgs.mkShell {
+            nativeBuildInputs = [ pkgs.unstable.nixfmt pkgs.unstable.statix ];
+          };
+        });
+
+      checks = eachDefaultSystemMap (system:
+        let pkgs = packages system;
+        in {
           nixfmt = pkgs.runCommand "check-with-nixfmt" {
             nativeBuildInputs = [ pkgs.findutils pkgs.unstable.nixfmt ];
           } ''
@@ -95,9 +103,6 @@
             touch $out
             ${pkgs.unstable.statix}/bin/statix check ${./.}
           '';
-        };
-        devShells.default = pkgs.mkShell {
-          nativeBuildInputs = [ pkgs.unstable.nixfmt pkgs.unstable.statix ];
-        };
-      });
+        });
+    };
 }
