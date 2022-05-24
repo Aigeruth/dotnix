@@ -18,7 +18,7 @@
   outputs =
     { home-manager, darwin, flake-utils, nixpkgs, nixpkgs-unstable, ... }:
     let
-      inherit (flake-utils.lib) eachDefaultSystemMap;
+      inherit (flake-utils.lib) eachDefaultSystem eachDefaultSystemMap;
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
           inherit (prev) system;
@@ -104,5 +104,8 @@
             ${pkgs.unstable.statix}/bin/statix check ${./.}
           '';
         });
+
+      formatter = eachDefaultSystemMap
+        (system: let pkgs = packages system; in pkgs.unstable.nixfmt);
     };
 }
