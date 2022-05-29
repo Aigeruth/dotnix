@@ -34,7 +34,7 @@ $(nix path-info ~/dotnix\#darwinConfigurations.Mila.system)/sw/bin/darwin-rebuil
 
 After the first successful run and starting a new login shell, `$PATH`
 for fish shell should now contain the `darwin-rebuild` command
-(see `modules/home-manager/programs/fix.nix`):
+(see `modules/home-manager/programs/fish.nix`):
 
 ```sh
 darwin-rebuild switch --flake ~/dotnix\#Mila
