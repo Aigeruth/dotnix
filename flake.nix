@@ -43,6 +43,7 @@
             home-manager.darwinModules.home-manager
             ./modules/darwin/system.nix
             ./modules/darwin/brew.nix
+            ./modules/darwin/shells.nix
           ] ++ modules;
           pkgs = packages system;
           # These are passed down to all nix-darwin modules
