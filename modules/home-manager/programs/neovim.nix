@@ -1,7 +1,11 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.unstable.rnix-lsp pkgs.unstable.nixfmt ];
+  home.packages = [
+    pkgs.unstable.rnix-lsp
+    pkgs.unstable.nixfmt
+    pkgs.unstable.vale # linter for prose
+  ];
 
   programs.neovim = {
     enable = true;
@@ -11,6 +15,7 @@
       dracula-vim
       nerdcommenter
       (nvim-treesitter.withPlugins (plugins: [ plugins.tree-sitter-nix ]))
+      trouble-nvim
     ];
 
     vimAlias = true;
