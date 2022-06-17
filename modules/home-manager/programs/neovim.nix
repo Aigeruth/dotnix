@@ -16,6 +16,7 @@
       nerdcommenter
       (nvim-treesitter.withPlugins (plugins: [ plugins.tree-sitter-nix ]))
       trouble-nvim
+      nvim-web-devicons
     ];
 
     vimAlias = true;
@@ -42,7 +43,7 @@
       \}
 
       lua << EOF
-        require'nvim-treesitter.configs'.setup {
+        require('nvim-treesitter.configs').setup {
           highlight = {
             enable = true,
           },
@@ -50,6 +51,8 @@
             enable = true,
           },
         }
+
+        require('trouble').setup { }
       EOF
     '';
   };
