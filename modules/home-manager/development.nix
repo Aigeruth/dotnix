@@ -7,6 +7,7 @@
     pkgs.git
     pkgs.lcov
     pkgs.unstable.gh
+    pkgs.mosh
     pkgs.unstable.pre-commit
     pkgs.unstable.yamllint
   ];
