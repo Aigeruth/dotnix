@@ -18,6 +18,7 @@
         ../modules/home-manager/programs/home-manager.nix
         ../modules/home-manager/programs/neovim.nix
         ../modules/home-manager/programs/starship.nix
+        ../modules/home-manager/programs/vale.nix
       ];
 
       home.stateVersion = stateVersion;

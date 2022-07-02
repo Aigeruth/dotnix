@@ -1,11 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
-    pkgs.unstable.rnix-lsp
-    pkgs.unstable.nixfmt
-    pkgs.unstable.vale # linter for prose
-  ];
+  home.packages = [ pkgs.unstable.rnix-lsp pkgs.unstable.nixfmt ];
 
   programs.neovim = {
     enable = true;
