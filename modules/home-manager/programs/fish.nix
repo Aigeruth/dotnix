@@ -27,7 +27,10 @@
         set -U fish_greeting
       '';
 
-      shellAliases = { ia = ''open -a "/Applications/iA Writer.app" ''; };
+      shellAliases = {
+        ia = ''open -a "/Applications/iA Writer.app" '';
+        ls = "exa";
+      };
     };
   };
 }
