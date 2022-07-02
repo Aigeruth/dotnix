@@ -45,5 +45,10 @@
         "require-cross-certification" = true;
       };
     };
+    tmux = { enable = true; };
+    zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+    };
   };
 }
