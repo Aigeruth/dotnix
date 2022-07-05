@@ -45,7 +45,17 @@
         "require-cross-certification" = true;
       };
     };
-    tmux = { enable = true; };
+    tmux = {
+      enable = true;
+      clock24 = true;
+      plugins = with pkgs.tmuxPlugins; [{
+        plugin = dracula;
+        extraConfig = ''
+          set -g @dracula-show-fahrenheit false
+          set -g @dracula-plugins "cpu-usage ram-usage time"
+        '';
+      }];
+    };
     zoxide = {
       enable = true;
       enableFishIntegration = true;
