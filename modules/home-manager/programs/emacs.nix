@@ -25,8 +25,12 @@
       (setq ledger-default-date-format ledger-iso-date-format
             ledger-post-account-alignment-column 2
             ledger-post-amount-alignment-column  64)
+      (add-hook 'ledger-mode-hook 'evil-ledger-mode)
 
       (global-company-mode)
+
+      (org-mode)
+      (add-hook 'org-mode-hook 'evil-org-mode)
     '';
     extraPackages = lib.attrVals [
       "company"
@@ -34,6 +38,9 @@
       "evil"
       "evil-ledger"
       "ledger-mode"
+      "org"
+      "org-contrib"
+      "evil-org"
     ];
   };
 
