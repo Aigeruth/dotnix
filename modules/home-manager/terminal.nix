@@ -45,6 +45,18 @@
         "require-cross-certification" = true;
       };
     };
+    kitty = {
+      enable = true;
+      font = {
+        name = "iM Writing Mono S Regular Nerd Font Complete";
+        size = 10;
+      };
+      package = pkgs.unstable.kitty;
+      settings = {
+        enable_audio_bell = false;
+        update_check_interval = 0;
+      };
+    };
     tmux = {
       enable = true;
       clock24 = true;
