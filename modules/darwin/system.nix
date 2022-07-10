@@ -8,6 +8,9 @@
   system.defaults.alf.globalstate = 1;
   system.defaults.alf.allowsignedenabled = 1;
 
+  system.keyboard.enableKeyMapping = true;
+  system.keyboard.remapCapsLockToEscape = true;
+
   services.nix-daemon.enable = true;
 
   system.stateVersion = 4;
