@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, username, ... }:
 
 {
   services.emacs = {
     enable = true;
-    package = config.home-manager.users.aige.programs.emacs.finalPackage;
+    package = config.home-manager.users.${username}.programs.emacs.finalPackage;
   };
 }

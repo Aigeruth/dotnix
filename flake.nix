@@ -36,7 +36,7 @@
         };
       stateVersion = "22.05";
 
-      mkDarwin = { system, modules }:
+      mkDarwin = { system, modules, username }:
         darwin.lib.darwinSystem {
           inherit system;
           modules = [
@@ -47,12 +47,13 @@
           ] ++ modules;
           pkgs = packages system;
           # These are passed down to all nix-darwin modules
-          specialArgs = { inherit stateVersion; };
+          specialArgs = { inherit stateVersion username; };
         };
     in {
       darwinConfigurations = {
         Jill = mkDarwin {
           system = "x86_64-darwin";
+          username = "nagyg";
           modules = [
             ./computers/Jill.nix
             ./modules/darwin/brew/browsers.nix
@@ -68,6 +69,7 @@
 
         Mila = mkDarwin {
           system = "aarch64-darwin";
+          username = "aige";
           modules = [
             ./computers/Mila.nix
             ./modules/darwin/emacs.nix
@@ -84,6 +86,7 @@
         };
         work = mkDarwin {
           system = "x86_64-darwin";
+          username = "gabornagy";
           modules = [
             ./computers/work.nix
             ./modules/darwin/brew/browsers.nix

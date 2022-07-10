@@ -1,12 +1,12 @@
-{ pkgs, system, stateVersion, ... }:
+{ pkgs, system, stateVersion, username, ... }:
 
 {
-  users.users.aige = {
-    name = "aige";
-    home = "/Users/aige";
+  users.users.${username} = {
+    name = "${username}";
+    home = "/Users/${username}";
   };
   home-manager = {
-    users.aige = {
+    users.${username} = {
       imports = [
         ../modules/home-manager/development.nix
         ../modules/home-manager/finance.nix
