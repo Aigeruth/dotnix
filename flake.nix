@@ -6,6 +6,11 @@
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    emacs = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager/release-22.05";
@@ -15,8 +20,8 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs =
-    { home-manager, darwin, flake-utils, nixpkgs, nixpkgs-unstable, ... }:
+  outputs = { home-manager, darwin, emacs, flake-utils, nixpkgs
+    , nixpkgs-unstable, ... }:
     let
       inherit (flake-utils.lib) eachDefaultSystem eachDefaultSystemMap;
       overlay-unstable = final: prev: {
@@ -28,7 +33,7 @@
       packages = system:
         import nixpkgs {
           inherit system;
-          overlays = [ overlay-unstable ];
+          overlays = [ overlay-unstable emacs.overlay ];
           config = {
             allowUnfreePredicate = pkg:
               builtins.elem (nixpkgs.lib.getName pkg) [ "1password-cli" ];

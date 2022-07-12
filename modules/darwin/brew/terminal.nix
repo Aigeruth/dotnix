@@ -8,6 +8,7 @@ _:
       "font-hack-nerd-font"
       "font-im-writing-nerd-font"
       "font-powerline-symbols"
+      "kitty"
     ];
   };
 }

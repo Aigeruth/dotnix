@@ -31,16 +31,19 @@
 
       (org-mode)
       (add-hook 'org-mode-hook 'evil-org-mode)
+      (add-hook 'org-mode-hook 'org-bullets-mode)
     '';
-    extraPackages = lib.attrVals [
-      "company"
-      "dracula-theme"
-      "evil"
-      "evil-ledger"
-      "ledger-mode"
-      "org"
-      "org-contrib"
-      "evil-org"
+    extraPackages = epkgs: [
+      epkgs.melpaPackages.company
+      epkgs.melpaPackages.company-ledger
+      epkgs.melpaPackages.dracula-theme
+      epkgs.melpaPackages.evil
+      epkgs.melpaPackages.evil-ledger
+      epkgs.melpaPackages.ledger-mode
+      epkgs.elpaPackages.org
+      epkgs.melpaPackages.org-bullets
+      epkgs.melpaPackages.evil-org
+      epkgs.nongnuPackages.org-contrib
     ];
   };
 
