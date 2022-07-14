@@ -84,7 +84,6 @@
           username = "aige";
           modules = [
             ./computers/Mila.nix
-            ./modules/darwin/emacs.nix
             ./modules/darwin/brew/browsers.nix
             ./modules/darwin/brew/development.nix
             ./modules/darwin/brew/note-taking/personal.nix

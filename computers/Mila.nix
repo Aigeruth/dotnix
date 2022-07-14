@@ -1,4 +1,4 @@
-{ pkgs, system, stateVersion, username, ... }:
+{ config, pkgs, stateVersion, username, ... }:
 
 {
   users.users.${username} = {
@@ -9,7 +9,6 @@
     users.${username} = {
       imports = [
         ../modules/home-manager/development.nix
-        ../modules/home-manager/finance.nix
         ../modules/home-manager/terminal.nix
         ../modules/home-manager/tools.nix
         ../modules/home-manager/programs/direnv.nix
@@ -20,10 +19,15 @@
         ../modules/home-manager/programs/starship.nix
         ../modules/home-manager/programs/vale.nix
       ];
-
+      home.packages = [ pkgs.ledger ];
       home.stateVersion = stateVersion;
     };
     # These are passed down to all home-manager modules
-    extraSpecialArgs = { inherit system pkgs; };
+    extraSpecialArgs = { inherit pkgs; };
+  };
+  services.emacs = {
+    enable = true;
+    package = config.home-manager.users.${username}.programs.emacs.finalPackage;
+    additionalPath = [ "${pkgs.ledger}/bin" ];
   };
 }
