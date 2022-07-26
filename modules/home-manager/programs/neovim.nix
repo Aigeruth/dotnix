@@ -13,6 +13,7 @@
       (nvim-treesitter.withPlugins (plugins: [ plugins.tree-sitter-nix ]))
       trouble-nvim
       nvim-web-devicons
+      vim-bazel
     ];
 
     vimAlias = true;
