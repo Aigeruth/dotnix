@@ -25,7 +25,7 @@
 
     package = pkgs.unstable.neovim-unwrapped;
     extraConfig = ''
-      set mouse
+      set mouse=a
       set hidden
       set number
 
