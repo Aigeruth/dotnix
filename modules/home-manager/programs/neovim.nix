@@ -10,6 +10,7 @@
       ale
       ctrlp-vim
       dracula-vim
+      fzf-vim
       nerdcommenter
       (nvim-treesitter.withPlugins (plugins: [ plugins.tree-sitter-nix ]))
       trouble-nvim
