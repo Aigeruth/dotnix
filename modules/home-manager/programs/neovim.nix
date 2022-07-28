@@ -8,6 +8,7 @@
 
     plugins = with pkgs.unstable.vimPlugins; [
       ale
+      ctrlp-vim
       dracula-vim
       nerdcommenter
       (nvim-treesitter.withPlugins (plugins: [ plugins.tree-sitter-nix ]))
@@ -24,6 +25,10 @@
 
     package = pkgs.unstable.neovim-unwrapped;
     extraConfig = ''
+      set mouse
+      set hidden
+      set number
+
       set expandtab
       set shiftwidth=2
       set softtabstop=2
