@@ -2,7 +2,7 @@ _:
 
 {
   homebrew = {
-    casks = [ "obsidian" "zotero" ];
+    casks = [ "obsidian" "zotero" "logseq" ];
     masApps = {
       "GoodNotes 5" = 1444383602;
       "iA Writer" = 775737590;
