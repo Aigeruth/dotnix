@@ -28,6 +28,6 @@
   services.emacs = {
     enable = true;
     package = config.home-manager.users.${username}.programs.emacs.finalPackage;
-    additionalPath = [ "${pkgs.ledger}/bin" ];
+    additionalPath = [ "${pkgs.ledger}/bin" "${pkgs.coreutils}/bin" ];
   };
 }
