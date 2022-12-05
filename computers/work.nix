@@ -2,11 +2,11 @@
 
 {
   users.users.gabornagy = {
-    name = "gabornagy";
-    home = "/Users/gabornagy";
+    name = "${username}";
+    home = "/Users/${username}";
   };
   home-manager = {
-    users.gabornagy = {
+    users.${username} = {
       imports = [
         ../modules/home-manager/development.nix
         ../modules/home-manager/terminal.nix
