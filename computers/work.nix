@@ -1,7 +1,7 @@
-{ pkgs, system, stateVersion, ... }:
+{ pkgs, system, stateVersion, username, ... }:
 
 {
-  users.users.gabornagy = {
+  users.users.${username} = {
     name = "${username}";
     home = "/Users/${username}";
   };
