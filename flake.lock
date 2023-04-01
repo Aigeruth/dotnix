@@ -88,16 +88,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1677840579,
-        "narHash": "sha256-CnMzsFKBNiXmatgY7aiK8UCqIL6qifA4KbV6BJaza40=",
+        "lastModified": 1680162048,
+        "narHash": "sha256-Uym4s8EyzXHlISZqThcb6P1H5bdgD9vmdIOLkk5ikG0=",
         "owner": "ledger",
         "repo": "ledger",
-        "rev": "5c107db1b5fb69245075ee324544a853637d355c",
+        "rev": "abc7c069b91f513ecfafe562cb7b39829250d2df",
         "type": "github"
       },
       "original": {
         "owner": "ledger",
-        "ref": "v3.3.1",
+        "ref": "v3.3.2",
         "repo": "ledger",
         "type": "github"
       }

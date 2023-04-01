@@ -17,7 +17,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ledger-flake = {
-      url = "github:ledger/ledger/v3.3.1";
+      url = "github:ledger/ledger/v3.3.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
