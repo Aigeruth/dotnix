@@ -84,27 +84,6 @@
         "type": "github"
       }
     },
-    "ledger-flake": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1680162048,
-        "narHash": "sha256-Uym4s8EyzXHlISZqThcb6P1H5bdgD9vmdIOLkk5ikG0=",
-        "owner": "ledger",
-        "repo": "ledger",
-        "rev": "abc7c069b91f513ecfafe562cb7b39829250d2df",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ledger",
-        "ref": "v3.3.2",
-        "repo": "ledger",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1681482634,
@@ -143,7 +122,6 @@
         "emacs": "emacs",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
-        "ledger-flake": "ledger-flake",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }

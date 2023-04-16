@@ -16,15 +16,11 @@
       url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ledger-flake = {
-      url = "github:ledger/ledger/v3.3.2";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = { home-manager, darwin, emacs, flake-utils, ledger-flake, nixpkgs
+  outputs = { home-manager, darwin, emacs, flake-utils, nixpkgs
     , nixpkgs-unstable, ... }:
     let
       inherit (flake-utils.lib) eachDefaultSystem eachDefaultSystemMap;
@@ -34,13 +30,10 @@
           config = { allowUnfree = true; };
         };
       };
-      overlay-ledger = final: prev: {
-        inherit (ledger-flake.packages.${prev.system}) ledger;
-      };
       packages = system:
         import nixpkgs {
           inherit system;
-          overlays = [ overlay-unstable emacs.overlay overlay-ledger ];
+          overlays = [ overlay-unstable emacs.overlay ];
           config = {
             allowUnfreePredicate = pkg:
               builtins.elem (nixpkgs.lib.getName pkg) [ "1password-cli" ];

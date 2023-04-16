@@ -19,7 +19,7 @@
         ../modules/home-manager/programs/starship.nix
         ../modules/home-manager/programs/vale.nix
       ];
-      home.packages = [ pkgs.ledger ];
+      home.packages = [ pkgs.unstable.ledger ];
       home.stateVersion = stateVersion;
     };
     # These are passed down to all home-manager modules
