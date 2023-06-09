@@ -13,10 +13,10 @@
     };
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.11";
+      url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
@@ -39,7 +39,7 @@
               builtins.elem (nixpkgs.lib.getName pkg) [ "1password-cli" ];
           };
         };
-      stateVersion = "22.11";
+      stateVersion = "23.05";
 
       mkDarwin = { system, modules, username }:
         darwin.lib.darwinSystem {
