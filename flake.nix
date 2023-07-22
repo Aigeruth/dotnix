@@ -88,18 +88,6 @@
             ./modules/darwin/brew/videography.nix
           ];
         };
-        thistle = mkDarwin {
-          system = "x86_64-darwin";
-          username = "aige";
-          modules = [
-            ./computers/thistle.nix
-            ./modules/darwin/brew/browsers.nix
-            ./modules/darwin/brew/development.nix
-            ./modules/darwin/brew/note-taking/personal.nix
-            ./modules/darwin/brew/terminal.nix
-            ./modules/darwin/brew/utils.nix
-          ];
-        };
         work = mkDarwin {
           system = "aarch64-darwin";
           username = "GaborNagy";
