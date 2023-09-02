@@ -36,7 +36,10 @@
           overlays = [ overlay-unstable emacs.overlay ];
           config = {
             allowUnfreePredicate = pkg:
-              builtins.elem (nixpkgs.lib.getName pkg) [ "1password-cli" ];
+              builtins.elem (nixpkgs.lib.getName pkg) [
+                "_1password"
+                "_1password-gui"
+              ];
           };
         };
       stateVersion = "23.05";
@@ -77,6 +80,7 @@
           username = "aige";
           modules = [
             ./computers/Mila.nix
+            ./modules/darwin/brew/1password.nix
             ./modules/darwin/brew/browsers.nix
             ./modules/darwin/brew/development.nix
             ./modules/darwin/brew/note-taking/personal.nix
@@ -93,6 +97,7 @@
           username = "GaborNagy";
           modules = [
             ./computers/work.nix
+            ./modules/darwin/brew/1password.nix
             ./modules/darwin/brew/development.nix
             ./modules/darwin/brew/terminal.nix
           ];

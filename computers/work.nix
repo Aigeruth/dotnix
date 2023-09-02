@@ -10,6 +10,7 @@
       imports = [
         ../modules/home-manager/development.nix
         ../modules/home-manager/terminal.nix
+        ../modules/home-manager/programs/1password.nix
         ../modules/home-manager/programs/direnv.nix
         ../modules/home-manager/programs/fish.nix
         ../modules/home-manager/programs/home-manager.nix

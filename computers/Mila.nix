@@ -11,6 +11,7 @@
         ../modules/home-manager/development.nix
         ../modules/home-manager/terminal.nix
         ../modules/home-manager/tools.nix
+        ../modules/home-manager/programs/1password.nix
         ../modules/home-manager/programs/direnv.nix
         ../modules/home-manager/programs/emacs.nix
         ../modules/home-manager/programs/fish.nix
