@@ -33,7 +33,7 @@
 
       shellAliases = {
         ia = ''open -a "/Applications/iA Writer.app" '';
-        ls = "exa";
+        ls = "eza";
       };
     };
   };

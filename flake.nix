@@ -13,10 +13,10 @@
     };
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
@@ -42,7 +42,7 @@
               ];
           };
         };
-      stateVersion = "23.05";
+      stateVersion = "23.11";
 
       mkDarwin = { system, modules, username }:
         darwin.lib.darwinSystem {
@@ -101,6 +101,16 @@
             ./modules/darwin/brew/development.nix
             ./modules/darwin/brew/terminal.nix
           ];
+        };
+      };
+      homeConfigurations = let
+        pkgs = packages "x86_64-linux";
+        username = "aige";
+      in {
+        ${username} = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./computers/Jill.nix ];
+          extraSpecialArgs = { inherit pkgs username stateVersion; };
         };
       };
       devShells = eachDefaultSystemMap (system:

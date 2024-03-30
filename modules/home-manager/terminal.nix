@@ -1,15 +1,12 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
-    pkgs.coreutils
-    pkgs.exa
-    pkgs.fd
-    pkgs.pinentry_mac
-    pkgs.ripgrep
-    pkgs.vgrep
-    pkgs.wget
-  ];
+  home.packages =
+    [ pkgs.coreutils pkgs.eza pkgs.fd pkgs.ripgrep pkgs.vgrep pkgs.wget ]
+    ++ (if pkgs.stdenv.hostPlatform.isDarwin then
+      [ pkgs.pinentry_mac ]
+    else
+      [ ]);
 
   programs = {
     bat = {
