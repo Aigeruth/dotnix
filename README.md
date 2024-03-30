@@ -12,6 +12,8 @@ experimental-features = nix-command flakes
 
 ## Installation
 
+### Darwin
+
 nix-darwin can be installed with `nix build` assuming that the
 repository is cloned into `$HOME/dotnix` directory:
 
@@ -38,4 +40,18 @@ for fish shell should now contain the `darwin-rebuild` command
 
 ```sh
 darwin-rebuild switch --flake ~/dotnix\#Mila
+```
+
+### Linux
+
+Initial run:
+
+```sh
+nix run home-manager/$branch -- init --switch ~/dotnix
+```
+
+Updates
+
+```sh
+home-manager switch --flake ~/dotnix
 ```
