@@ -26,9 +26,16 @@
     # These are passed down to all home-manager modules
     extraSpecialArgs = { inherit pkgs; };
   };
-  services.emacs = {
-    enable = true;
-    package = config.home-manager.users.${username}.programs.emacs.finalPackage;
-    additionalPath = [ "${pkgs.ledger}/bin" "${pkgs.coreutils}/bin" ];
+  services = {
+    emacs = {
+      enable = true;
+      package =
+        config.home-manager.users.${username}.programs.emacs.finalPackage;
+      additionalPath = [ "${pkgs.ledger}/bin" "${pkgs.coreutils}/bin" ];
+    };
+    tailscale = {
+      enable = true;
+      package = pkgs.unstable.tailscale;
+    };
   };
 }
