@@ -18,10 +18,15 @@
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    _1password-shell-plugins = {
+      url = "github:1Password/shell-plugins";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs = { home-manager, darwin, emacs, flake-utils, nixpkgs
-    , nixpkgs-unstable, ... }:
+    , nixpkgs-unstable, ... }@inputs:
     let
       inherit (flake-utils.lib) eachDefaultSystem eachDefaultSystemMap;
       overlay-unstable = final: prev: {
@@ -110,7 +115,7 @@
         ${username} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [ ./computers/Jill.nix ];
-          extraSpecialArgs = { inherit pkgs username stateVersion; };
+          extraSpecialArgs = { inherit inputs pkgs username stateVersion; };
         };
       };
       devShells = eachDefaultSystemMap (system:
