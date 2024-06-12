@@ -11,6 +11,7 @@
     ../modules/home-manager/terminal.nix
     ../modules/home-manager/tools.nix
     ../modules/home-manager/programs/direnv.nix
+    ../modules/home-manager/programs/emacs.nix
     ../modules/home-manager/programs/fish.nix
     ../modules/home-manager/programs/home-manager.nix
     ../modules/home-manager/programs/neovim.nix
