@@ -1,4 +1,4 @@
-{ pkgs, system, stateVersion, username, ... }:
+{ pkgs, system, stateVersion, username, shell-plugins, ... }:
 
 {
   users.users.${username} = {
@@ -8,6 +8,7 @@
   home-manager = {
     users.${username} = {
       imports = [
+        shell-plugins.hmModules.default
         ../modules/home-manager/development.nix
         ../modules/home-manager/terminal.nix
         ../modules/home-manager/programs/1password.nix

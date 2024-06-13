@@ -18,7 +18,7 @@
     };
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    _1password-shell-plugins = {
+    shell-plugins = {
       url = "github:1Password/shell-plugins";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.flake-utils.follows = "flake-utils";
@@ -26,7 +26,7 @@
   };
 
   outputs = { home-manager, darwin, emacs, flake-utils, nixpkgs
-    , nixpkgs-unstable, ... }@inputs:
+    , nixpkgs-unstable, shell-plugins, ... }:
     let
       inherit (flake-utils.lib) eachDefaultSystem eachDefaultSystemMap;
       overlay-unstable = final: prev: {
@@ -44,6 +44,7 @@
               builtins.elem (nixpkgs.lib.getName pkg) [
                 "_1password"
                 "_1password-gui"
+                "1password-cli"
               ];
           };
         };
@@ -60,7 +61,7 @@
           ] ++ modules;
           pkgs = packages system;
           # These are passed down to all nix-darwin modules
-          specialArgs = { inherit stateVersion username; };
+          specialArgs = { inherit shell-plugins stateVersion username; };
         };
     in {
       darwinConfigurations = {
@@ -115,7 +116,9 @@
         ${username} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [ ./computers/Jill.nix ];
-          extraSpecialArgs = { inherit inputs pkgs username stateVersion; };
+          extraSpecialArgs = {
+            inherit shell-plugins pkgs username stateVersion;
+          };
         };
       };
       devShells = eachDefaultSystemMap (system:
