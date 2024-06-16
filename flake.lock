@@ -153,15 +153,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1716464653,
-        "narHash": "sha256-7ABtcvZf8P2axZNVV3m9LiKy1VW0lumu60sSuUOYG0o=",
-        "owner": "1Password",
+        "lastModified": 1718462349,
+        "narHash": "sha256-WVAUtNzcTMOi/2sTcG7Hbtn0I/1XB0v0D4rmBt7jkMI=",
+        "owner": "Aigeruth",
         "repo": "shell-plugins",
-        "rev": "d36189bf486ff2c4d9275c9ce29ec1aa92eaa4a7",
+        "rev": "85dafae4a6c5b2dc12d2cdfda20b025241b5d6c3",
         "type": "github"
       },
       "original": {
-        "owner": "1Password",
+        "owner": "Aigeruth",
+        "ref": "optional-package",
         "repo": "shell-plugins",
         "type": "github"
       }

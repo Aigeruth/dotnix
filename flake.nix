@@ -19,7 +19,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     shell-plugins = {
-      url = "github:1Password/shell-plugins";
+      # url = "github:1Password/shell-plugins";
+      # Use fork until 1Password/shell-plugins#471 is merged.
+      url = "github:Aigeruth/shell-plugins/optional-package";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.flake-utils.follows = "flake-utils";
     };
@@ -45,6 +47,7 @@
                 "_1password"
                 "_1password-gui"
                 "1password-cli"
+                "1password"
               ];
           };
         };

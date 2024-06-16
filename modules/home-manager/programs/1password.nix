@@ -5,6 +5,7 @@
     '';
     _1password-shell-plugins = {
       enable = true;
+      package = null;
       plugins = [ pkgs.unstable.gh ];
     };
   };
