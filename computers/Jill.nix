@@ -5,7 +5,6 @@
     inherit username stateVersion;
     homeDirectory = "/home/${username}";
   };
-  programs.home-manager = { enable = true; };
   imports = [
     shell-plugins.hmModules.default
     ../modules/home-manager/development.nix
@@ -18,4 +17,9 @@
     ../modules/home-manager/programs/neovim.nix
     ../modules/home-manager/programs/starship.nix
   ];
+  programs = {
+    home-manager = { enable = true; };
+    # 1Password is installed via apt.
+    git.extraConfig.gpg.ssh.program = "/opt/1Password/op-ssh-sign";
+  };
 }
